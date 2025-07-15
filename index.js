@@ -100,15 +100,11 @@ function middleware(limit, maxLimit) {
           ? ctx.query.page
           : 1;
 
-    ctx.query.limit =
-      typeof ctx.query.limit === 'string'
-        ? Number.parseInt(ctx.query.limit, 10) ||
-          (typeof ctx.query.limit === 'number' &&
-            Number.isFinite(ctx.query.limit) &&
-            ctx.query.limit >= 0)
-          ? ctx.query.limit
-          : 0
-        : _limit;
+    if (typeof ctx.query.limit === 'string')
+      ctx.query.limit = Number.parseInt(ctx.query.limit, 10);
+
+    if (!Number.isFinite(ctx.query.limit) || !Number.isInteger(ctx.query.limit))
+      ctx.query.limit = _limit;
 
     if (ctx.query.limit > _maxLimit) ctx.query.limit = _maxLimit;
 
