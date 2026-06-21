@@ -46,7 +46,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/koajs/ctx-paginate.git"
+    "url": "git+https://github.com/koajs/ctx-paginate.git"
   },
   "scripts": {
     "lint": "xo --fix && remark . -qfo && fixpack",
